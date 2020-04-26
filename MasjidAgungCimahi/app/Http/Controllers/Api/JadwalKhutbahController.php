@@ -28,10 +28,14 @@ class JadwalKhutbahController extends Controller
     public function store(Request $request){
         $request->validate([
             'nama_ustad' => 'required',
+            'tanggal' => 'required',
+
         ]);
 
         JadwalKhutbah::create([
             'nama_ustad' => $request->nama_ustad,
+            'tanggal' => $request->tanggal,
+
         ]);
 
         return [
@@ -43,10 +47,13 @@ class JadwalKhutbahController extends Controller
     public function update(Request $request, JadwalKhutbah $jadwalkhutbah, $id){
         $request->validate([
             'nama_ustad' => 'required',
+            'tanggal' => 'required',
+
         ]);
 
         $jadwalkhutbah = JadwalKhutbah::find($id);
         $jadwalkhutbah->nama_ustad = $request->nama_ustad;
+        $jadwalkhutbah->tanggal = $request->tanggal;
         $jadwalkhutbah->save();
 
         return [

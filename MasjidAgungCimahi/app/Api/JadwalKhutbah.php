@@ -8,6 +8,7 @@ class JadwalKhutbah extends Model
 {
     protected $table = "jadwal_khutbah";
     protected $fillable = [
-        "nama_ustad"
+        "nama_ustad",
+        "tanggal"
     ];
 }

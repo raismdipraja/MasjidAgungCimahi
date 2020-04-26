@@ -1,285 +1,69 @@
-<!doctype html>
-<html lang="en">
-
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Language" content="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Analytics Dashboard - This is an example dashboard created using build-in elements and components.</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
-    <meta name="msapplication-tap-highlight" content="no">
-<link href="./main.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-</head>
-<body>
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow">
-            <div class="app-header__logo">
-                <div class="logo-src"></div>
-                <div class="header__pane ml-auto">
-                    <div>
-                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
+@extends('layouts.master')
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">DATA PELATIHAN
+                <div class="btn-actions-pane-right">
+                    <div class="search-wrapper">
+                        <div class="input-holder">
+                            <input type="text" class="search-input" placeholder="Masukan Judul Kajian">
+                            <button class="search-icon"><span></span></button>
+                        </div>
+                            <button class="close"></button>
                     </div>
                 </div>
+                    <button class="btn-wide btn btn-success" data-toggle="modal" data-target="#tambahpelatihan"><i class="fa fa-plus"> Tambah</i></button></td>
             </div>
-            <div class="app-header__mobile-menu">
-                <div>
-                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
-                    </button>
-                </div>
-            </div>
-            <div class="app-header__menu">
-                <span>
-                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                        <span class="btn-icon-wrapper">
-                            <i class="fa fa-ellipsis-v fa-w-6"></i>
-                        </span>
-                    </button>
-                </span>
-            </div>    <div class="app-header__content">
-                <div class="app-header-left">
-                    <ul class="header-menu nav">
-                        <li class="nav-item">
-                            <a href="{{route('anggota')}}" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Anggota DKM
-                            </a>
-                        </li>
-                        <li class="btn-group nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-edit"></i>
-                                Apa yah
-                            </a>
-                        </li>
-                       
-                    </ul>       
-                </div>
-                <div class="app-header-right">
-                    <div class="header-btn-lg pr-0">
-                        <div class="widget-content p-0">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
-                                    <div class="btn-group">
-                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <div class="widget-heading">
-                                            {{ Auth::user()->name }}
-                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                            </div>
-                                        </a>
-                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                                 {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>                                       
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>     
-                </div>
-            </div>
-        </div>        
-        <div class="ui-theme-settings">
-            <div class="theme-settings__inner">
-                <div class="scrollbar-container">
-                    <div class="theme-settings__options-wrapper">
-                        <div class="p-3">
-                            <ul class="list-group">
-                                <li class="list-group-item">
+                <div class="table-responsive">
+                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Judul Pelatihan</th>
+                                <th>Nama Pembimbing</th>
+                                <th class="text-center">Gambar</th>
+                                <th class="text-center">Dibuat pada</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        @php $no = 0 @endphp
+                        @foreach( $pelatihan as $p)
+                            @php
+                                $no++;
+                            @endphp
+                        <tr>
+                            <td class="text-center text-muted">{{$no}}</td>
+                                <td>
                                     <div class="widget-content p-0">
                                         <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="switch has-switch switch-container-class" data-class="fixed-header">
-                                                    <div class="switch-animate switch-on">
-                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <li class="list-group-item">
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                             <div class="switch has-switch switch-container-class" data-class="fixed-footer">
-                                                                 <div class="switch-animate switch-off">
-                                                                     <input type="checkbox" data-toggle="toggle" data-onstyle="success">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </div>
-                                        <h3 class="themeoptions-heading">
-                                            <div>Main Content Options</div>
-                                            <button type="button" class="btn-pill btn-shadow btn-wide ml-auto active btn btn-focus btn-sm">Restore Default</button>
-                                        </h3>
-                                        <div class="p-3">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <h5 class="pb-2">Page Section Tabs</h5>
-                                                    <div class="theme-settings-swatches">
-                                                        <div role="group" class="mt-2 btn-group">
-                                                            <button type="button" class="btn-wide btn-shadow btn-primary btn btn-secondary switch-theme-class" data-class="body-tabs-line">Line</button>
-                                                            <button type="button" class="btn-wide btn-shadow btn-primary active btn btn-secondary switch-theme-class" data-class="body-tabs-shadow">Shadow</button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </div>
-                        </div>
-                    </div>       
-                    <div class="app-main">
-                        <div class="app-sidebar sidebar-shadow">   
-                            <div class="scrollbar-sidebar">
-                                 <div class="app-sidebar__inner">
-                                    <ul class="vertical-nav-menu">
-                                        <li class="app-sidebar__heading">Dashboards</li>
-                                            <li>
-                                                <a href="{{route('beranda')}}" >
-                                                <i class="metismenu-icon pe-7s-rocket"></i>
-                                                    Beranda
-                                                </a>
-                                            </li>
-                                
-                                        <li>
-                                            <a href="{{route('kajian')}}">
-                                                <i class="metismenu-icon fas fa-chalkboard-teacher" ></i>
-                                                <font size="3px"> Kajian</font>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('pelatihan')}}" class="mm-active">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
-                                                Pelatihan
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('kegiatanislam')}}">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
-                                                    Kegiatan Islam
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('pengajianrutin')}}">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
-                                                Pengajian Rutin
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon pe-7s-diamond"></i>
-                                                Keuangan
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{{route('keuangan.pemasukan')}}">
-                                                        <i class="metismenu-icon"></i>
-                                                        Pemasukan
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{route('keuangan.pengeluaran')}}">
-                                                        <i class="metismenu-icon">
-                                                        </i>Pengeluaran
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="app-main__outer">
-                        <div class="app-main__inner">
-                        <div class="app-page-title">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-header">DATA PELATIHAN
-                                        <div class="btn-actions-pane-right">
-                                            <div class="search-wrapper">
-                                                <div class="input-holder">
-                                                    <input type="text" class="search-input" placeholder="Masukan Judul Kajian">
-                                                    <button class="search-icon"><span></span></button>
-                                                </div>
-                                                <button class="close"></button>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">{{ $p->nama_acara }}</div>
                                             </div>
                                         </div>
-                                        <button class="btn-wide btn btn-success" data-toggle="modal" data-target="#tambahpelatihan"><i class="fa fa-plus"> Tambah</i></button></td>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center">#</th>
-                                                    <th>Judul Pelatihan</th>
-                                                    <th>Nama Pembimbing</th>
-                                                    <th class="text-center">Gambar</th>
-                                                    <th class="text-center">Dibuat pada</th>
-                                                    <th class="text-center">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            @php $no = 0 @endphp
-                                                @foreach( $pelatihan as $p)
-                                                @php
-                                                    $no++;
-                                                @endphp
-                                                <tr>
-                                                    <td class="text-center text-muted">{{$no}}</td>
-                                                    <td>
-                                                        <div class="widget-content p-0">
-                                                            <div class="widget-content-wrapper">
-                                                                <div class="widget-content-left flex2">
-                                                                    <div class="widget-heading">{{ $p->nama_acara }}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">{{ $p->nama_ustad }}</td>
-                                                    <td class="text-center"><img src="{{ url('/image/'.$p->gambar) }}" ></td>
-                                                    <td class="text-center"> {{ $p->created_at }}</td>
-                                                    <td class="text-center">
-                                                        <button type="button" id="PopoverCustomT-1" class="btn btn-primary " data-toggle="modal" data-target="#updatepelatihan"><i class="fa fa-edit"> Edit </i></button>
-                                                        <button type="button" id="PopoverCustomT-1" class="btn btn-danger "><i class="fa fa-trash"> Hapus </i></button>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="d-block text-center card-footer"> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </td>
+                                    <td class="text-center">{{ $p->nama_ustad }}</td>
+                                    <td class="text-center"><img src="{{ url('/image/'.$p->gambar) }}" alt="image" height="200px" width="150px"></td>
+                                    <td class="text-center"> {{ $p->created_at }}</td>
+                                    <td class="text-center">
+                                        <button type="button" id="PopoverCustomT-1" class="btn btn-primary  btn-edit" data-id="{{ $p->id }}" data-toggle="modal" data-target="#updatepelatihan"><i class="fa fa-edit"> Edit </i></button>
+                                        <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-delete"  data-id="{{ $p->id }}"><i class="fa fa-trash"> Hapus </i></button>
+                            </td>
+                        </tr>
+                            @endforeach
+                    </tbody>
+                    </table>
                 </div>
+                    <div class="d-block text-center card-footer"> </div>
             </div>
         </div>
     </div>
-    
+</div>
+              
+@endsection
+@section('modal')  
     <div id="tambahpelatihan" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- konten modal-->
@@ -294,23 +78,26 @@
 				<div class="modal-body">
                 <div style=margin-left:10px;>
                 <div style=margin-right:10px;>
-                <form action="" enctype="multipart/form-data" method="POST">
+                <form action="" enctype="multipart/form-data">
                 {{ csrf_field() }}   
                     <div class="form-group">           
-                        <label for="">Judul Pelatihan</label>
-                        <input type="text" id="nama" name="jatuh_tempo" class="form-control">
+                        <label for="">Judul Kajian</label>
+                        <input type="text" id="nama" name="nama_acara" class="form-control">
+                            <br>
+                        <label for="">Nama Pembimbing</label>
+                        <input type="text" id="nama" name="nama_ustad" class="form-control">
                             <br>
                             <div class="form-group">
                                 <label for="">Gambar</label>
-                                <input type="file" id="nama" name="jatuh_tempo" class="form-control">
+                                <input type="file" id="nama" name="gambar" class="form-control">
                              </div>
                             <br>
                             
-                        <center> <button class="btn btn-success">Simpan Data</button></center>
+                </form>
+                        <center> <button type="button" class="btn btn-success btn-simpan">Simpan Data</button></center>
                         <br>
                         <br>
                     </div> 
-                </form>  
                 </div>  
                 </div>
 				</div>
@@ -332,23 +119,22 @@
 				<div class="modal-body">
                 <div style=margin-left:10px;>
                 <div style=margin-right:10px;>
-                <form action="" enctype="multipart/form-data" method="POST">
-                {{ csrf_field() }}   
-                    <div class="form-group">           
-                        <label for="">Judul Pelatihan</label>
-                        <input type="text" id="nama" name="jatuh_tempo" class="form-control">
-                            <br>
-                            <div class="form-group">
-                                <label for="">Gambar</label>
-                                <input type="file" id="nama" name="jatuh_tempo" class="form-control">
-                             </div>
-                            <br>
-                            
-                        <center> <button class="btn btn-success">Simpan Data</button></center>
-                        <br>
-                        <br>
-                    </div> 
-                </form>  
+                <form action="" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <label for="">Judul Kajian</label>
+                                    <input type="text" id="nama" name="nama_acara_edit" class="form-control">
+                                    <br>
+                                    <label for="">Nama Ustadz</label>
+                                    <input type="text" id="nama" name="nama_ustad_edit" class="form-control">
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="">Gambar</label>
+                                        <input type="file" id="nama" name="gambar_edit" class="form-control">
+                                    </div>
+                                    <br>
+                            </form>  
+                            <center> <button type="button" class="btn btn-success btn-update" data-id="0">Simpan Data</button></center>
                 </div>  
                 </div>
 				</div>
@@ -356,6 +142,95 @@
 		</div>
 	</div>
 
-</body>                                              
-<script type="text/javascript" src="./assets/scripts/main.js"></script>
-</html>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            }
+        })
+    
+        $('.btn-simpan').click(function(){
+            var nama_acara = $('input[name="nama_acara"]').val(),
+                nama_ustad = $('input[name="nama_ustad"]').val(),
+                gambar = $('input[name="gambar"]').prop("files")[0];
+
+                dataform= new FormData();
+                dataform.append('nama_acara', nama_acara);
+                dataform.append('nama_ustad', nama_ustad);
+                dataform.append('gambar', gambar);
+                
+                $.ajax({
+                    processData : false,
+                    contentType : false,
+                    url: '{{ url("pelatihan") }}',
+                    type: 'POST',
+                    data : dataform,
+                    success: function (response) {
+                         location.reload();
+                    }
+                });
+            
+        });
+
+
+            $('.btn-edit').click(function(){
+                $.ajax({
+                    url: '{{ url("pelatihan")."/" }}' + $(this).data('id'), //data-id=""
+                    type: 'GET',
+                    success: function (response) {
+                         $('input[name="nama_acara_edit"]').val(response.nama_acara);
+                         $('input[name="nama_ustad_edit"]').val(response.nama_ustad);
+                         $('.btn-update').data('id', response.id);
+                    }
+                });
+            
+        });
+
+        $('.btn-update').click(function(){
+            var nama_acara_edit = $('input[name="nama_acara_edit"]').val(),
+                nama_ustad_edit = $('input[name="nama_ustad_edit"]').val(),
+                gambar_edit = $('input[name="gambar_edit"]').prop("files")[0];
+
+                dataform= new FormData();
+                dataform.append('nama_acara', nama_acara_edit);
+                dataform.append('nama_ustad', nama_ustad_edit);
+                dataform.append('gambar', gambar_edit);
+                
+                $.ajax({
+                    processData : false,
+                    contentType : false,
+                    url: '{{ url("pelatihan")."/" }}' + $(this).data('id'),
+                    type: 'POST',
+                    data : dataform,
+                    success: function (response) {
+                         location.reload();
+                    }
+                });
+            
+        });
+
+
+
+        $('.btn-delete').click(function(){
+            if(confirm('Apa Anda yakin ingin Menghapus?')){
+                $.ajax({
+                    url: '{{ url("pelatihan")."/" }}' + $(this).data('id'), //data-id=""
+                    type: 'DELETE',
+                    success: function (response) {
+                        alert(response);
+                        location.reload();
+                    }
+                });
+            }
+        });
+
+
+    });
+
+
+</script>
+
+@endsection
+

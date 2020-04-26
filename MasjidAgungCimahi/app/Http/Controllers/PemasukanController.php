@@ -13,6 +13,27 @@ class PemasukanController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->title = "Pemasukan";
+        $this->menu = "Keuangan";
+        $this->subMenu = "Pemasukan";
+
+    }
+
+    public function prefix($param = null)
+    {
+        $data['title'] = $this->title;
+        $data['menu'] = $this->menu;
+        $data['subMenu'] = $this->subMenu;
+
+        
+
+        if(isset($param)){
+            foreach ($param as $index => $value) {
+                $data[$index] = $value;
+            }
+        }
+
+        return $data;
     }
 
     public function index()
@@ -25,7 +46,12 @@ class PemasukanController extends Controller
         ->where('jenis_keuangan', 'Pemasukan')
         ->get();
 
-        return view('keuangan.pemasukan', ['pemasukan'=>$pemasukan], ['total'=>$total]);
+        $data['title'] = $this->title;
+        $data['menu'] = $this->menu;
+        $data['subMenu'] = $this->subMenu;
+
+
+        return view('keuangan.pemasukan', $this->prefix($data), ['pemasukan'=>$pemasukan, 'total'=>$total]);
         
     }
 
@@ -33,9 +59,9 @@ class PemasukanController extends Controller
         $request->validate([
             'judul' => 'required',
             'jumlah' => 'required',
-            'nama_pemberi' => '',
+            'nama_pemberi' => 'required',
             'tanggal' => 'required',
-            'jenis_keuangan' => 'required',
+
         ]);
 
         Keuangan::create([
@@ -43,18 +69,49 @@ class PemasukanController extends Controller
             'jumlah' => $request->jumlah,
             'nama_pemberi' => $request->nama_pemberi,
             'tanggal' => $request->tanggal,
-            'jenis_keuangan' => $request->jenis_keuangan,
+            'jenis_keuangan' => 'Pemasukan',
         ]);
 
-        return Response()->json("Pemilik Saham berhasil ditambahkan");
+        
+        return Response()->json('berhasil');
 
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        
         DB::table('keuangan')->where('id', $id)->delete();
 
         return Response()->json('berhasil');
 
     }
+
+    public function edit($id){
+        $kajian =   Keuangan::find($id);
+        
+        return $kajian;
+       }
+
+       public function update(Request $request, $id){
+        $request->validate([
+            'judul' => 'required',
+            'jumlah' => 'required|numeric',
+            'nama_pemberi' => 'required',
+            'tanggal' => 'required',
+
+        ]);
+
+        $keuangan = Keuangan::find($id);
+        $keuangan->judul   = $request->judul;
+        $keuangan->jumlah   = $request->jumlah;
+        $keuangan->nama_pemberi =$request->nama_pemberi;
+        $keuangan->tanggal =$request->tanggal;
+        $keuangan->jenis_keuangan  = 'Pemasukan';
+        $keuangan->save();        
+       
+
+        return Response()->json('berhasil');
+
+}
+
 }

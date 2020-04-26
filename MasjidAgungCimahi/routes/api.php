@@ -19,6 +19,9 @@ use Illuminate\Http\Request;
 Route::post('login','Api\UserController@login');
 
 Route::get('/acara','Api\AcaraController@index');
+Route::get('/acara/kajian','Api\AcaraController@indexkajian');
+Route::get('/acara/pelatihan','Api\AcaraController@indexpelatihan');
+Route::get('/acara/kegiatanislam','Api\AcaraController@indexkegiatanislam');
 Route::get('/acara/{id}','Api\AcaraController@get');
 Route::post('/acara/store','Api\AcaraController@store');
 Route::post('/acara/update/{id}','Api\AcaraController@update');
@@ -37,6 +40,8 @@ Route::post('/jadwalkhutbah/update/{id}','Api\JadwalKhutbahController@update');
 Route::get('/jadwalkhutbah/destroy/{id}','Api\JadwalKhutbahController@destroy');
 
 Route::get('/keuangan','Api\KeuanganController@index');
+Route::get('/keuangan/pemasukan','Api\KeuanganController@indexpemasukan');
+Route::get('/keuangan/pengeluaran','Api\KeuanganController@indexpengeluaran');
 Route::get('/keuangan/{id}','Api\KeuanganController@get');
 Route::post('/keuangan/store','Api\KeuanganController@store');
 Route::post('/keuangan/update/{id}','Api\KeuanganController@update');

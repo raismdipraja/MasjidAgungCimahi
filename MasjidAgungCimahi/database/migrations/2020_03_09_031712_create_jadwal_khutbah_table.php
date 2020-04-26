@@ -16,6 +16,7 @@ class CreateJadwalKhutbahTable extends Migration
         Schema::create('jadwal_khutbah', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_ustad');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

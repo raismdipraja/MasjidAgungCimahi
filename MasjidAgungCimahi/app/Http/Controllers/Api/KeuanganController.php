@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Api\Keuangan;
 use Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class KeuanganController extends Controller
 {
@@ -12,6 +14,26 @@ class KeuanganController extends Controller
         $data['status'] = "Success!";
         $data['data'] = Keuangan::all();
         return $data;
+    }
+
+    public function indexpemasukan(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('keuangan')
+        ->where('jenis_keuangan', 'Pemasukan')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengeluaran(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('keuangan')
+        ->where('jenis_keuangan', 'Pengeluaran')
+        ->get();
+
+        return $data;
+
     }
 
     public function get(Request $request, $id){
