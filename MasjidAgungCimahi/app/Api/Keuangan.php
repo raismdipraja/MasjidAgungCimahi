@@ -9,7 +9,8 @@ class Keuangan extends Model
     protected $table = "keuangan";
     protected $fillable = [
         "judul",
-        "jumlah",   
+        "jumlah",
+        "pengeluaran",   
         "nama_pemberi",
         "tanggal",
         "jenis_keuangan"

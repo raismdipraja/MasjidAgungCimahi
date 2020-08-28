@@ -46,6 +46,11 @@ Route::delete('kegiatanislam/{id?}', 'KegiatanislamController@destroy');
 Route::get('kegiatanislam/{id?}', 'KegiatanislamController@edit');
 Route::post('kegiatanislam/{id?}', 'KegiatanislamController@update');
 
+Route::get('berita','BeritaController@index')->name('berita');
+Route::post('berita', 'BeritaController@store');
+Route::delete('berita/{id?}', 'BeritaController@destroy');
+Route::get('berita/{id?}', 'BeritaController@edit');
+Route::post('berita/{id?}', 'BeritaController@update');
 
 
 Route::get('pengajianrutin','PengajianrutinController@index')->name('pengajianrutin');

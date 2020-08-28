@@ -489,7 +489,7 @@ $(document).ready(function() {
         $('.btn-simpan').click(function(){
             var judul = $('input[name="judul"]').val(),
                 nama_ustad = $('input[name="nama_ustad"]').val(),
-                hari = $('input[name="hari"]').val(),
+                hari = $('select[name="hari"]').val(),
                 jam = $('input[name="jam"]').val(),
 
                 dataform= new FormData();

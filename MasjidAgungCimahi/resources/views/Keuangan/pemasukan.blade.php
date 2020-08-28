@@ -20,7 +20,7 @@
                             <th class="text-center">#</th>
                             <th>Nama Pemasukan</th>
                             <th class="text-center">Jumlah Pemasukan</th>
-                            <th class="text-center">Nama Pemberi</th>
+                            <th class="text-center">Nama Donatur</th>
                             <th class="text-center">Tanggal</th>
                             <th class="text-center">Aksi</th>
                         </tr>

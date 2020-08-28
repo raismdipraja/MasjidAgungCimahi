@@ -17,6 +17,7 @@ class CreateKeuanganTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->integer('jumlah');
+            $table->integer('pengeluaran');
             $table->string('nama_pemberi');
             $table->date('tanggal');
             $table->string('jenis_keuangan');

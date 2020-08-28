@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
@@ -31,10 +26,6 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert(
             ['nama'=>'Rais','alamat'=>'Masjid Agung Cimahi','email' => 'rais@masjid.com', 'password' => Hash::make('123456'), 'role' => 'dkm']
-        );
-
-        DB::table('users')->insert(
-            ['nama'=>'JEMAAH','alamat'=>' Pinggir Masjid Agung Cimahi','email' => 'jemaah@masjid.com', 'password' => Hash::make('jemaahmasjidagungcimahi'), 'role' => 'jemaah']
         );
     }
 

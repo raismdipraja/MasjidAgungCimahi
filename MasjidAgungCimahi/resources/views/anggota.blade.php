@@ -50,7 +50,7 @@
                             <td class="text-center">{{ $p->alamat }}</td>
                             <td class="text-center">{{ $p->created_at }}</td>
                             <td class="text-center">
-                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-edit" data-id="{{ $p->id }}" data-toggle="modal" data-target="#updateanggota"><i class="fa fa-edit"> Edit </i></button>
+                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-edit" data-id="{{ $p->id }}"   data-toggle="modal" data-target="#updateanggota"><i class="fa fa-edit"> Edit </i></button>
                                 <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-delete" data-id="{{ $p->id }}"><i class="fa fa-trash"> Hapus </i></button>
                             </td>
                         </tr>

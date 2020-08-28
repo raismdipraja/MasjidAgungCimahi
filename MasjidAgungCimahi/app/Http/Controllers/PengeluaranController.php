@@ -40,7 +40,7 @@ class PengeluaranController extends Controller
         ->where('jenis_keuangan', 'Pengeluaran')
         ->get();
 
-        $total = Keuangan::select(\DB::raw('SUM(jumlah) as total'))
+        $total = Keuangan::select(\DB::raw('SUM(pengeluaran) as total'))
         ->where('jenis_keuangan', 'Pengeluaran')
         ->get();
 
@@ -55,14 +55,15 @@ class PengeluaranController extends Controller
     public function store(Request $request){
         $request->validate([
             'judul' => 'required',
-            'jumlah' => 'required',
+            'pengeluaran' => 'required',
             'tanggal' => 'required',
 
         ]);
 
         Keuangan::create([
             'judul' => $request->judul,
-            'jumlah' => $request->jumlah,
+            'jumlah' => '0',
+            'pengeluaran' => $request->pengeluaran,
             'nama_pemberi' => 'null',
             'tanggal' => $request->tanggal,
             'jenis_keuangan' => 'Pengeluaran',
@@ -91,14 +92,15 @@ class PengeluaranController extends Controller
        public function update(Request $request, $id){
         $request->validate([
             'judul' => 'required',
-            'jumlah' => 'required|numeric',
+            'pengeluaran' => 'required|numeric',
             'tanggal' => 'required',
 
         ]);
 
         $keuangan = Keuangan::find($id);
         $keuangan->judul   = $request->judul;
-        $keuangan->jumlah   = $request->jumlah;
+        $keuangan->jumlah   = '0';
+        $keuangan->pengeluaran   = $request->pengeluaran;
         $keuangan->nama_pemberi = 'null';
         $keuangan->tanggal =$request->tanggal;
         $keuangan->jenis_keuangan  = 'Pengeluaran';

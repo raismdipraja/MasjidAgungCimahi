@@ -7,42 +7,49 @@ use Image;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\AcaraResource as acRe;
+
 
 class AcaraController extends Controller
 {
     public function index(Request $request){
-        $data['status'] = "Success!";
-        $data['data'] = Acara::all();
-        return $data;
+        $acara = Acara::all();
+        $response['status'] = "Success!";
+        $response['data'] = acRe::collection($acara);
+        return response()->json($response,200);
+
     }
 
     public function indexkajian(Request $request){
-        $data['status'] = "Success!";
-        $data['data'] = DB::table('acara')
+        $kajian = DB::table('acara')
         ->where('jenis_acara', 'Kajian')
         ->get();
+        $response['status'] = "Success!";
+        $response['data'] = acRe::collection($kajian);
 
-        return $data;
+        return response()->json($response,200);
 
     }
 
     public function indexpelatihan(Request $request){
-        $data['status'] = "Success!";
-        $data['data'] = DB::table('acara')
+        $pelatihan = DB::table('acara')
         ->where('jenis_acara', 'Pelatihan')
         ->get();
+        $response['status'] = "Success!";
+        $response['data'] = acRe::collection($pelatihan);
 
-        return $data;
+        return response()->json($response,200);
 
     }
 
     public function indexkegiatanislam(Request $request){
-        $data['status'] = "Success!";
-        $data['data'] = DB::table('acara')
+        $kegiatanislam = DB::table('acara')
         ->where('jenis_acara', 'KegiatanIslam')
         ->get();
+        $response['status'] = "Success!";
+        $response['data'] =  acRe::collection($kegiatanislam);
 
-        return $data;
+        return response()->json($response,200);
 
     }
 

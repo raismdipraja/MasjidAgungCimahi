@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-center">Rp. {{ $p->jumlah }}</td>
+                            <td class="text-center">Rp. {{ $p->pengeluaran }}</td>
                             <td class="text-center"> {{ $p->tanggal }} </td>
                             <td class="text-center">
                                 <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-edit" data-id="{{ $p->id }}" data-toggle="modal" data-target="#updatepengeluaran"><i class="fa fa-edit"> Edit </i></button>
@@ -82,7 +82,7 @@
                             <br>
                             <div class="form-group">
                                 <label for="">Jumlah</label>
-                                <input type="text" id="nama" name="jumlah" class="form-control">
+                                <input type="text" id="nama" name="pengeluaran" class="form-control">
                              </div>
                             <br>
                             <div class="form-group">
@@ -122,7 +122,7 @@
                             <br>
                             <div class="form-group">
                                 <label for="">Jumlah</label>
-                                <input type="text" id="nama" name="jumlah_edit" class="form-control">
+                                <input type="text" id="nama" name="pengeluaran_edit" class="form-control">
                              </div>
                             <br>
                             <div class="form-group">
@@ -151,13 +151,13 @@
 
         $('.btn-simpan').click(function(){
             var judul = $('input[name="judul"]').val(),
-                jumlah = $('input[name="jumlah"]').val(),
+                pengeluaran = $('input[name="pengeluaran"]').val(),
                 tanggal = $('input[name="tanggal"]').val(),
 
 
                 dataform= new FormData();
                 dataform.append('judul', judul);
-                dataform.append('jumlah', jumlah);
+                dataform.append('pengeluaran', pengeluaran);
                 dataform.append('tanggal', tanggal);
 
                 
@@ -192,7 +192,7 @@
                     type: 'GET',
                     success: function (response) {
                          $('input[name="judul_edit"]').val(response.judul);
-                         $('input[name="jumlah_edit"]').val(response.jumlah);
+                         $('input[name="pengeluaran_edit"]').val(response.pengeluaran);
                          $('input[name="tanggal_edit"]').val(response.tanggal);
                          $('.btn-update').data('id', response.id);
                     }
@@ -202,13 +202,13 @@
 
         $('.btn-update').click(function(){
             var judul_edit = $('input[name="judul_edit"]').val(),
-                jumlah_edit = $('input[name="jumlah_edit"]').val(),
+                pengeluaran_edit = $('input[name="pengeluaran_edit"]').val(),
                 tanggal_edit = $('input[name="tanggal_edit"]').val(),
 
 
                 dataform= new FormData();
                 dataform.append('judul', judul_edit);
-                dataform.append('jumlah', jumlah_edit);
+                dataform.append('pengeluaran', pengeluaran_edit);
                 dataform.append('tanggal', tanggal_edit);
                 
                 $.ajax({

@@ -47,6 +47,39 @@ class PelatihanController extends Controller
     }
 
     public function store(Request $request){
+         // Awal Kode Notifikasi
+         $curl = curl_init();
+         curl_setopt_array($curl, array(
+           CURLOPT_URL => "https://fcm.googleapis.com/fcm/send",
+           CURLOPT_RETURNTRANSFER => true,
+           CURLOPT_ENCODING => "",
+           CURLOPT_MAXREDIRS => 10,
+           CURLOPT_TIMEOUT => 30,
+           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+           CURLOPT_CUSTOMREQUEST => "POST",
+           CURLOPT_POSTFIELDS => "{\r\n  
+               \"to\":\"/topics/all\",\r\n  
+               \"notification\": {\r\n 
+                    \"title\":\"Pelatihan\",\r\n      
+                    \"body\":\"$request->nama_acara\"\r\n
+                     }\r\n}",
+           CURLOPT_HTTPHEADER => array(
+               "Content-Type: application/json",
+               "Authorization: key=AAAAuX_aHJw:APA91bEChGvVgBbzxkLWhEhpMfSmJ1cSR-JbqAfjJP-BsZ3LXaxbbg_aTWXgn2p4EIQfUQJvgxc4XrXw52tCIRMqDQHuo7ShPRyio1vxhW8Cyzgrg4vgdAqDuvQPYD0KCWg7_1fLW2Kz",
+           ),
+       ));
+
+       $response = curl_exec($curl);
+       $err = curl_error($curl);
+       $jsonResponse = json_decode($response, true);
+       curl_close($curl);
+       header("content-type: application/json");
+       if ($err) {
+           return "cURL Error #:" . $err;
+       }
+       // Akhir Kode Notifikasi
+
+
         $request->validate([
             'nama_acara' => 'required',
             'nama_ustad' => 'required',

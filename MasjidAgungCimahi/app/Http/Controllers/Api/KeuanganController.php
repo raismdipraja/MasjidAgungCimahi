@@ -21,10 +21,41 @@ class KeuanganController extends Controller
         $data['data'] = DB::table('keuangan')
         ->where('jenis_keuangan', 'Pemasukan')
         ->get();
+       
 
         return $data;
 
     }
+
+    public function jumlahpemasukan(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = Keuangan::select(\DB::raw("SUM(jumlah)"))
+        ->where('jenis_keuangan','pemasukan')
+        ->get();
+        return $data;
+
+    }
+
+
+    public function indexjumlahpengeluaran(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = Keuangan::select(\DB::raw("SUM(pengeluaran)"))
+        ->get();
+        return $data;
+
+    }
+
+    public function indexjumlahtotal(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = Keuangan::select(\DB::raw("SUM(jumlah-pengeluaran)"))->get();
+
+
+        
+       return $data;
+
+
+    }
+    
 
     public function indexpengeluaran(Request $request){
         $data['status'] = "Success!";
@@ -50,7 +81,8 @@ class KeuanganController extends Controller
     public function store(Request $request){
         $request->validate([
             'judul' => 'required',
-            'jumlah' => 'required',
+            'jumlah' => '',
+            'pengeluaran' => '',
             'nama_pemberi' => '',
             'tanggal' => 'required',
             'jenis_keuangan' => 'required',
@@ -59,6 +91,7 @@ class KeuanganController extends Controller
         Keuangan::create([
             'judul' => $request->judul,
             'jumlah' => $request->jumlah,
+            'pengeluaran' => $request->pengeluaran,
             'nama_pemberi' => $request->nama_pemberi,
             'tanggal' => $request->tanggal,
             'jenis_keuangan' => $request->jenis_keuangan,

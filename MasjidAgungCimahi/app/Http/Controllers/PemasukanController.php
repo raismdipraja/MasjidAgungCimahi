@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Api\Keuangan;
+use App\Http\Resources\BeritaResource as stuRe;
+
 
 
 class PemasukanController extends Controller
@@ -49,6 +51,7 @@ class PemasukanController extends Controller
         $data['title'] = $this->title;
         $data['menu'] = $this->menu;
         $data['subMenu'] = $this->subMenu;
+        $data = StuRe::collection($pemasukan);
 
 
         return view('keuangan.pemasukan', $this->prefix($data), ['pemasukan'=>$pemasukan, 'total'=>$total]);
@@ -67,6 +70,7 @@ class PemasukanController extends Controller
         Keuangan::create([
             'judul' => $request->judul,
             'jumlah' => $request->jumlah,
+            'pengeluaran' =>'0',
             'nama_pemberi' => $request->nama_pemberi,
             'tanggal' => $request->tanggal,
             'jenis_keuangan' => 'Pemasukan',
@@ -104,6 +108,7 @@ class PemasukanController extends Controller
         $keuangan = Keuangan::find($id);
         $keuangan->judul   = $request->judul;
         $keuangan->jumlah   = $request->jumlah;
+        $keuangan->pengeluaran   = '0';
         $keuangan->nama_pemberi =$request->nama_pemberi;
         $keuangan->tanggal =$request->tanggal;
         $keuangan->jenis_keuangan  = 'Pemasukan';

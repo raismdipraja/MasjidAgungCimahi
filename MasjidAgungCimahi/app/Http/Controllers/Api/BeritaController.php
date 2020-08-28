@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Api\Berita;
 use Image;
 use Illuminate\Http\Request;
+use App\Http\Resources\BeritaResource as stuRe;
+
 
 class BeritaController extends Controller
 {
     public function index(Request $request){
-        $data['status'] = "Success!";
-        $data['data'] = Berita::all();
-        return $data;
+        $berita = Berita::all();
+        $response['status'] = true;
+        $response['data'] = StuRe::collection($berita);
+        return response()->json($response,200);
     }
 
     public function get(Request $request, $id){
@@ -32,23 +35,26 @@ class BeritaController extends Controller
             'teks' => 'required',
         ]);
 
-        Berita::create([
-            'judul' => $request->judul,
-            'gambar' => $request->gambar,
-            'teks' => $request->teks,
-        ]);
+        
+        $input['judul'] = $request->judul;
+        $input['teks'] = $request->teks;
 
-        if($request->hasFile('gambar')){
-            $image =$request->file('gambar');
-            $filename = time(). '.' .$image->getClientOriginalExtension();
-            $location = public_path('image/berita/'.$filename);
-            Image::make($image)->save($location);
-            $input['gambar'] = $filename;
-        }
+        if($request->hasFile('gambar'))
+        $gambar =$request->file('gambar');
+        $filename = time(). '.' .$gambar->getClientOriginalExtension();
+        $location = public_path('image/'.$filename);
+        Image::make($gambar)->save($location);
+        $input['gambar'] = $filename;
+
+
+        $berita = Berita::create($input);
+
+       
 
         return [
             'status' => true,
-            'message' => 'Data Berita berhasil ditambah'
+            'message' => 'Data Berita berhasil ditambah',
+            'data' => new stuRe($berita)
         ];
     }
 

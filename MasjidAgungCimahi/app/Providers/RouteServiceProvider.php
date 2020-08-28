@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/beranda';
+    public const HOME = '/';
     public const ANGGOTA = '/anggotadkm';
 
 

@@ -53,17 +53,10 @@
                     <ul class="header-menu nav">
                         <li class="nav-item">
                             <a href="{{route('anggota')}}" class="nav-link" >
-                                <i class="nav-link-icon fa fa-database"> </i>
+                                <i class="nav-link-icon fas fa-mosque"> </i>
                                 Anggota DKM
                             </a>
                         </li>
-                        <li class="btn-group nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-edit"></i>
-                                Apa yah
-                            </a>
-                        </li>
-                       
                     </ul>       
                 </div>
                 <div class="app-header-right">
@@ -157,44 +150,50 @@
                                         <li class="app-sidebar__heading">Dashboards</li>
                                             <li >
                                                 <a href="{{route('beranda')}}" class="{{ isset($menu) ? $menu == 'Beranda' ? 'mm-active' : '' : ''}}">
-                                                <i class="metismenu-icon pe-7s-rocket"></i>
-                                                    Beranda
+                                                <b><i class="metismenu-icon fas fa-home"></i></b>
+                                                <font size="3px"> Beranda</font>
                                                 </a>
                                             </li>
                                 
                                         <li >
                                             <a href="{{route('kajian')}}" class="{{ isset($menu) ? $menu == 'Kajian' ? 'mm-active' : '' : ''}}" >
-                                                <i class="metismenu-icon fas fa-chalkboard-teacher" ></i>
+                                                <i class="metismenu-icon fas fa-user-friends" ></i>
                                                 <font size="3px"> Kajian</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{route('pelatihan')}}"  class="{{isset($menu) ? $menu == 'Pelatihan' ? 'mm-active' : '' : '' }}">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
+                                                <i class="metismenu-icon fas fa-book-reader"></i>
                                                 Pelatihan
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{route('kegiatanislam')}}" class="{{isset($menu) ? $menu == 'Kegiatan Islam' ? 'mm-active' : '' : '' }}">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
+                                                <i class="metismenu-icon fas fa-users"></i>
                                                     Kegiatan Islam
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="{{route('berita')}}"  class="{{isset($menu) ? $menu == 'Berita' ? 'mm-active' : '' : '' }}">
+                                                <i class="metismenu-icon fas fa-book-reader"></i>
+                                                Berita
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{route('pengajianrutin')}}" class="{{isset($menu) ? $menu == 'Pengajian Rutin' ? 'mm-active' : '' : '' }}">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
+                                                <i class="metismenu-icon fas fa-quran"></i>
                                                 Pengajian Rutin
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{route('jadwalkhutbah')}}" class="{{isset($menu) ? $menu == 'Jadwal Khutbah' ? 'mm-active' : '' : '' }}">
-                                                <i class="metismenu-icon pe-7s-display2"></i>
+                                                <i class="metismenu-icon fas fa-hot-tub"></i>
                                                 Jadwal Khutbah
                                             </a>
                                         </li>
                                         <li class="{{ isset($subMenu) ? $subMenu == 'Pemasukan' ? 'mm-active' : '' : ''}} , {{ isset($subMenu2) ? $subMenu2 == 'Pengeluaran' ? 'mm-active' : '' : ''}}" >
                                             <a href="#" >
-                                                <i class="metismenu-icon pe-7s-diamond"></i>
+                                                <i class="metismenu-icon fas fa-money-check-alt"></i>
                                                 Keuangan
                                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                             </a>

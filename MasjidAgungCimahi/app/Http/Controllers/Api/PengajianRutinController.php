@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Api\PengajianRutin;
 use Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class PengajianRutinController extends Controller
 {
@@ -12,6 +14,76 @@ class PengajianRutinController extends Controller
         $data['status'] = "Success!";
         $data['data'] = PengajianRutin::all();
         return $data;
+    }
+
+    public function indexpengajiansenin(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Senin')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengajianselasa(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Selasa')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengajianrabu(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Rabu')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengajiankamis(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Kamis')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengajianjumat(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Jumat')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengajianSabtu(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Sabtu')
+        ->get();
+
+        return $data;
+
+    }
+
+    public function indexpengajianMinggu(Request $request){
+        $data['status'] = "Success!";
+        $data['data'] = DB::table('pengajian_rutin')
+        ->where('hari', 'Minggu')
+        ->get();
+
+        return $data;
+
     }
 
     public function get(Request $request, $id){

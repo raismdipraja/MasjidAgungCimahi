@@ -8,8 +8,8 @@
                         <div class="btn-actions-pane-right">
                             <div class="search-wrapper">
                                 <div class="input-holder">
-                                    <input type="text" class="search-input" placeholder="Masukan Judul Kajian">
-                                    <button class="search-icon"><span></span></button>
+                                    <input type="text" name="cari" class="search-input" placeholder="Masukan Judul Kajian">
+                                    <button type="button" class="search-icon"><span></span></button>
                                 </div>
                                 <button class="close"></button>
                             </div>
